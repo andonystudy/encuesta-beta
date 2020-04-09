@@ -1,0 +1,37 @@
+theme_colors = 
+{//Default - Light
+    primary: '#ee44aa',
+    secondary: '#424242',
+    accent: '#82B1FF',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FFC107'
+},
+{//Default 2 - Light 
+    primary: '#1976D2',
+    secondary: '#424242',
+    accent: '#82B1FF',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FFC107',
+},
+{//Custom 01
+    primary: '#4582EC',
+    secondary: '#ADB5BD',
+    accent: '#009688',
+    error: '#D9534F',
+    info: '#17A2B8',
+    success: '#02B875',
+    warning: '#F0AD4E',
+},
+{//Custom 01
+    primary: '#5E72E4',
+    secondary: '#F7FAFC',
+    accent: '#172B4D',
+    error: '#F5365C',
+    info: '#11CDEF',
+    success: '#2DCE89',
+    warning: '#FB6340',
+}

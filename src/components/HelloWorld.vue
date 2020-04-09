@@ -1,9 +1,23 @@
 <template>
-  <v-container>
-    <v-btn class="btnOpenCardOption" tile color="indigo" dark @click="changeStateCardOption(true)">
-      Añadir Pregunta
-      <v-icon right>mdi-forum</v-icon>
-    </v-btn>
+  <v-container class="container-form">
+    <div class="btnOpenCardOption">
+      <v-btn class="btnForms" tile color="accent" dark @click="changeStateCardOption(true)">
+        <span class="btnFormsTexts">Añadir Pregunta</span>
+        <v-icon>mdi-forum</v-icon>
+      </v-btn>
+      <div v-show="showBtnForms">
+        <div class="d-flex justify-end">
+          <v-btn class="btnForms" tile color="info" elevation="2" title="Vista Previa">
+            <span class="btnFormsTexts">Vista Previa</span>
+            <v-icon>mdi-eye-settings</v-icon>
+          </v-btn>
+          <v-btn class="btnForms" tile color="primary" elevation="2">
+            <span class="btnFormsTexts">Guardar</span>
+            <v-icon>mdi-content-save</v-icon>
+          </v-btn>
+        </div>
+      </div>
+    </div>
     <transition name="fade">
       <v-card class="mx-auto cardOption" width="300px" v-show="showCardOption">
         <v-card-title class="pb-0">Generar pregunta con:</v-card-title>
@@ -18,7 +32,7 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-list flat :dense="dense">
-          <v-list-item-group color="indigo">
+          <v-list-item-group color="accent">
             <v-list-item @click="addShortAswers()">
               <v-list-item-icon>
                 <v-icon>mdi-text-short</v-icon>
@@ -72,7 +86,6 @@
           <v-col cols="12" class="col-input">
             <v-textarea v-model="form.description" outlined rows="2" label="Descripción"></v-textarea>
           </v-col>
-
           <v-divider></v-divider>
 
           <div class="mt-5">
@@ -92,7 +105,7 @@
                   </v-col>
                   <v-divider></v-divider>
                   <div class="mt-2 d-flex justify-end">
-                    <v-btn color="error" @click="removeShortAswers(i)">
+                    <v-btn tile color="error" @click="removeShortAswers(i)">
                       <v-icon>mdi-delete-outline</v-icon>
                     </v-btn>
                   </div>
@@ -121,6 +134,7 @@
                       <v-btn
                         @click="removeMultipleChoicesItems(i, j)"
                         v-show="form.multipleChoices[i].options.length > 1"
+                        tile
                         class="mr-2"
                         color="error"
                         outlined
@@ -132,7 +146,8 @@
                       <v-btn
                         @click="addMultipleChoicesItems(i)"
                         v-show="j == form.multipleChoices[i].options.length - 1"
-                        color="info"
+                        tile
+                        color="success"
                         outlined
                         fab
                         x-small
@@ -143,7 +158,7 @@
                   </v-row>
                   <v-divider></v-divider>
                   <div class="mt-2 d-flex justify-end">
-                    <v-btn color="error" @click="removeMultipleChoices(i)">
+                    <v-btn tile color="error" @click="removeMultipleChoices(i)">
                       <v-icon>mdi-delete-outline</v-icon>
                     </v-btn>
                   </div>
@@ -164,6 +179,7 @@ export default {
   data: () => ({
     dense: true,
     showCardOption: false,
+    showBtnForms: false,
     form: {
       title: "Formulario 01",
       description: "Un bonito formulario",
@@ -180,6 +196,7 @@ export default {
         question: ""
       });
       this.showCardOption = false;
+      this.showBtnForms = true;
     },
     removeShortAswers(index) {
       this.form.shortAswers.splice(index, 1);
@@ -190,6 +207,7 @@ export default {
         options: [{ option: "" }]
       });
       this.showCardOption = false;
+      this.showBtnForms = true;
     },
     removeMultipleChoices(index) {
       this.form.multipleChoices.splice(index, 1);
@@ -215,6 +233,7 @@ export default {
   opacity: 0;
 }
 .btnOpenCardOption {
+  display: flex;
   position: fixed;
   bottom: 2vh;
   left: 50%;
@@ -240,6 +259,17 @@ export default {
 }
 .input-question {
   height: 60px;
+}
+.container-form {
+  position: relative;
+}
+.btnFormsTexts{
+  display: none;
+  margin-right: 10px;
+  transition: display .4s ease;
+}
+.btnForms:hover .btnFormsTexts{
+  display: block;
 }
 </style>
 
